@@ -1,0 +1,39 @@
+# Composer dependencies
+/vendor/
+composer.phar
+composer.lock
+
+# Environment files
+.env
+.env.backup
+.env.local
+.env.production
+
+# PHP-CS-Fixer
+.php-cs-fixer.cache
+.php_cs.cache
+
+# PHPUnit
+.phpunit.result.cache
+phpunit.xml
+
+# Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+.DS_Store
+
+# Cache and logs
+/cache/
+/logs/
+*.log
+
+# Other
+/node_modules/
+npm-debug.log
+yarn-error.log
+.phpactor.json
+.phpstorm.meta.php
