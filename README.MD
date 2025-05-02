@@ -20,7 +20,7 @@ A lightweight PHP API built with the Flight PHP framework.
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/xkphp.git
+   git clone https://github.com/erlangxk/xkphp.git
    cd xkphp
    ```
 
