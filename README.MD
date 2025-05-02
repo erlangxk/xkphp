@@ -12,7 +12,7 @@ A lightweight PHP API built with the Flight PHP framework.
 
 ### Prerequisites
 
-- PHP 8.0+
+- PHP 8.4+
 - Composer
 - Docker and Docker Compose (optional)
 
