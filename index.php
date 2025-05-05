@@ -2,28 +2,19 @@
 
 require 'vendor/autoload.php';
 
-
-use Simonking\Php\Controllers\NewController;
+use Simonking\Php\Controllers\ApiController;
 
 Flight::route('/', function() {
-  echo 'hello world! xxx';
+  echo 'hello world!';
 });
 
-Flight::route('/json', function() {
-  Flight::json(['hello' => 'world xxx']);
+Flight::route('/hello', function() {
+  Flight::json(['hello' => 'world']);
 });
 
-$newController = new NewController();
 
-Flight::route('/new', [$newController, 'index']);
-
-Flight::route('/new/@id', function($id) use ($newController) {
-    $result = $newController->show($id);
-    Flight::json($result);
-});
-
-$apiController = new \Simonking\Php\Controllers\ApiController();
-Flight::route('GET /api/posts', [$apiController, 'getPosts']);
-Flight::route('GET /api/posts/@id', [$apiController, 'getPost']);
+$apiController = new ApiController();
+Flight::route('GET /api/users', [$apiController, 'getUsers']);
+Flight::route('GET /api/user/@id', [$apiController, 'getUser']);
 
 Flight::start();

@@ -24,15 +24,6 @@ A lightweight PHP API built with the Flight PHP framework.
    cd xkphp
    ```
 
-2. Install dependencies
-   ```
-   composer install
-   ```
-
-3. Run locally
-   ```
-   php -S localhost:8000
-   ```
 
 ### Docker Deployment
 
@@ -45,9 +36,9 @@ Access the API at http://localhost:8080
 ## API Endpoints
 
 - GET / - Hello world
-- GET /json - JSON response example
-- GET /new - Controller example
-- GET /new/:id - Controller with parameter
+- GET /hello - JSON response example
+- GET /api/users - Controller using Guzzle HTTP client
+- GET /api/user/:id - Controller with parameter using Guzzle HTTP client
 
 ## License
 

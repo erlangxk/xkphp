@@ -13,16 +13,16 @@ class ApiController
     public function __construct()
     {
         // Get a domain-specific client
-        $this->jsonPlaceholderClient = HttpClientService::getClient('https://jsonplaceholder.typicode.com/');
+        $this->jsonPlaceholderClient = HttpClientService::getClient('http://mockserver:3000/');
     }
     
     /**
      * Fetch posts from JSONPlaceholder API
      */
-    public function getPosts()
+    public function getUsers()
     {
         try {
-            $response = $this->jsonPlaceholderClient->get('posts');
+            $response = $this->jsonPlaceholderClient->get('users');
             $statusCode = $response->getStatusCode();
             
             if ($statusCode === 200) {
@@ -34,7 +34,7 @@ class ApiController
             } else {
                 Flight::json([
                     'success' => false,
-                    'message' => 'Failed to fetch posts',
+                    'message' => 'Failed to fetch users',
                     'status' => $statusCode
                 ], 500);
             }
@@ -49,10 +49,10 @@ class ApiController
     /**
      * Fetch a specific post by ID
      */
-    public function getPost($id)
+    public function getUser($id)
     {
         try {
-            $response = $this->jsonPlaceholderClient->get("posts/{$id}");
+            $response = $this->jsonPlaceholderClient->get("users/{$id}");
             $statusCode = $response->getStatusCode();
             
             if ($statusCode === 200) {
@@ -64,12 +64,12 @@ class ApiController
             } else if ($statusCode === 404) {
                 Flight::json([
                     'success' => false,
-                    'message' => 'Post not found'
+                    'message' => 'User not found'
                 ], 404);
             } else {
                 Flight::json([
                     'success' => false,
-                    'message' => 'Failed to fetch post',
+                    'message' => 'Failed to fetch user',
                     'status' => $statusCode
                 ], 500);
             }
@@ -81,38 +81,4 @@ class ApiController
         }
     }
     
-    /**
-     * Fetch weather data for a specific city
-     */
-    public function getWeatherData($city)
-    {
-        // Get a different domain-specific client
-        $weatherClient = HttpClientService::getClient('https://api.weatherapi.com/v1/');
-        
-        try {
-            $response = $weatherClient->get("current.json", [
-                'query' => ['q' => $city, 'key' => 'your-api-key']
-            ]);
-            $statusCode = $response->getStatusCode();
-            
-            if ($statusCode === 200) {
-                $data = json_decode($response->getBody(), true);
-                Flight::json([
-                    'success' => true,
-                    'data' => $data
-                ]);
-            } else {
-                Flight::json([
-                    'success' => false,
-                    'message' => 'Failed to fetch weather data',
-                    'status' => $statusCode
-                ], 500);
-            }
-        } catch (GuzzleException $e) {
-            Flight::json([
-                'success' => false,
-                'message' => 'Error fetching data: ' . $e->getMessage()
-            ], 500);
-        }
-    }
 }
