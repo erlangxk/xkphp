@@ -24,10 +24,15 @@ A lightweight PHP API built with the Flight PHP framework.
    cd xkphp
    ```
 
-
 ### Docker Deployment
 
 ```
+docker-compose up -d
+```
+
+To update the mock server with the latest version from GitHub:
+```
+docker-compose build --no-cache mockserver
 docker-compose up -d
 ```
 
