@@ -38,6 +38,27 @@ docker-compose up -d
 
 Access the API at http://localhost:8080
 
+## Mock Server Integration
+
+This project integrates with a mock API server from [https://github.com/erlangxk/mockAPI](https://github.com/erlangxk/mockAPI).
+
+### Features of the Mock Server
+- Provides simulated API endpoints for development and testing
+- Built using Mockoon for easy API mocking
+- Deployed automatically as part of the Docker Compose setup
+
+### How It Works
+The mock server is pulled directly from GitHub during container build time. When you run the Docker Compose setup, the mock server runs as a separate container and is available to the main PHP application via the internal Docker network.
+
+### Accessing Mock Endpoints
+From your PHP application, you can access the mock server endpoints using the service name as the hostname:
+
+```php
+// Example using the HttpClientService
+$client = HttpClientService::getClient('http://mockserver:3000');
+$response = $client->get('/api/endpoint');
+```
+
 ## API Endpoints
 
 - GET / - Hello world
